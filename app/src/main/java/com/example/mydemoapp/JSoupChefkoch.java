@@ -84,6 +84,7 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
             timesString = new String[(elementsTimes.size())];
             selectImageUrlString = new String[(elementsPicture.size())];
 
+            //Elemente auslesen --> Menge, Zutaten, Zeiten, Image
             for (Element element1 : elementsAmount) {
                 for (int i = 0; i < elementsAmount.size(); i++) {
                     amountStrings[i] = elementsAmount.get(i).text();
@@ -104,14 +105,18 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
                     selectImageUrlString[i] = elementsPicture.get(i).absUrl("src");
                     ;
                 }
-                imageUrl = selectImageUrlString[6];
+                imageUrl = selectImageUrlString[7];
                 foodPicture = getImageBytes(imageUrl);
             }
 
             amount = convertArrayToString(amountStrings);
             ingredients = convertArrayToString(ingredientsString);
 
+            //erforderlicher try-Schritt, da unterschiedliche Einzelangaben (nicht immer alle Zeiten, teilweise nur 1 od. 2...)
+
+
             timeWork = timesString[0].substring(2);
+
             try {
                 timeCook = timesString[1].substring(2);
             }catch (Exception e){
@@ -143,6 +148,9 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
         return null;
     }
 
+    //Methodenteil
+
+
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
@@ -159,9 +167,8 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
     }
 
 
-    /*
-* Methodenteil
-* */
+
+
 // Stringseperator
 public static String strSeparator = "__,__";
 
