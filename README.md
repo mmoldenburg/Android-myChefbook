@@ -4,3 +4,4 @@ The idea of the app is that recipes on chefkoch.de (selected here as an example)
 
 I will gladly accept suggestions for improvement, especially to continuously improve my programming skills and clean coding.
 
+Bitte beachten: Bei erstem Aufruf chefkoch.de nicht(!) die Cookies annehmen! Ansonsten wird nach mehreren downloads von Rezepten die Website nicht mehr aufrufbar.
