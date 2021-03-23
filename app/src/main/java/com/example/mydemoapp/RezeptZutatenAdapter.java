@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
 public class RezeptZutatenAdapter extends RecyclerView.Adapter<RezeptZutatenAdapter.ViewHolder> {
 
     Context context;
@@ -24,12 +23,11 @@ public class RezeptZutatenAdapter extends RecyclerView.Adapter<RezeptZutatenAdap
     }
 
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.details_helper, parent,false);
+        View view = inflater.inflate(R.layout.details_helper, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,7 +43,7 @@ public class RezeptZutatenAdapter extends RecyclerView.Adapter<RezeptZutatenAdap
         return amount.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView menge, zutat;
 

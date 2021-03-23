@@ -51,14 +51,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean addOne(RezeptModel rezeptModel){
+    public boolean addOne(RezeptModel rezeptModel) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_TITEL, rezeptModel.getmTitel());
         cv.put(COLUMN_MENGE, rezeptModel.getmMenge());
-        cv.put(COLUMN_ARTIKEL,rezeptModel.getmZutat());
+        cv.put(COLUMN_ARTIKEL, rezeptModel.getmZutat());
         cv.put(COLUMN_ZUBEREITUNG, rezeptModel.getmZubereitung());
         cv.put(COLUMN_ARBEITSZEIT, rezeptModel.getmVorZeit());
         cv.put(COLUMN_KOCHZEIT, rezeptModel.getmKochZeit());
@@ -67,15 +67,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
         long insert = db.insert(REZEPT_TABLE, "null", cv);
-        if(insert == -1){
+        if (insert == -1) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
     }
 
-    public ArrayList<RezeptModel> getRecipe(){
+    public ArrayList<RezeptModel> getRecipe() {
         ArrayList<RezeptModel> returnList = new ArrayList<>();
         //get Data from Database
         String queryString = "SELECT * FROM " + REZEPT_TABLE;
@@ -84,8 +84,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(queryString, null);
 
-        if (cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 int recipeID = cursor.getInt(0);
                 String recipeTitle = cursor.getString(1);
                 String recipeAmount = cursor.getString(2);
@@ -97,12 +97,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 byte[] recipeFoodPicture = cursor.getBlob(8);
 
 
-                RezeptModel rezeptModel = new RezeptModel(recipeID, recipeTitle, recipeAmount,recipeIngridients, recipePrepaire, recipeTimeWork, recipeTimeCook, recipeTimeTotal, recipeFoodPicture);
+                RezeptModel rezeptModel = new RezeptModel(recipeID, recipeTitle, recipeAmount, recipeIngridients, recipePrepaire, recipeTimeWork, recipeTimeCook, recipeTimeTotal, recipeFoodPicture);
                 returnList.add(rezeptModel);
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
 
-        }else {
+        } else {
             //empty db
             cursor.close();
             db.close();
@@ -111,7 +111,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean deleteOne(RezeptModel rezeptModel){
+    public boolean deleteOne(RezeptModel rezeptModel) {
         //find the recipe in the database - if found, delete it and return true
         //if not exists in database - return false
 
@@ -119,9 +119,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String queryString = "DELETE FROM " + REZEPT_TABLE + " WHERE " + COLUMN_ID + " = " + rezeptModel.getmId();
         Cursor cursor = db.rawQuery(queryString, null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

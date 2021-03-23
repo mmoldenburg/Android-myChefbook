@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
+public class JSoupChefkoch extends AsyncTask<String, Integer, String> {
 
     //JSoup-Ziel-HTML-Daten
     private final String url = "https://www.chefkoch.de/";
@@ -28,9 +28,9 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
     private final String jsoupPicture = "amp-img";
     private final String jsoupRating = ".ds-rating-avg > span";
     private ProgressDialog progressDialog;
-    private Context context;
+    private final Context context;
 
-    public JSoupChefkoch(WebViewActivity ctx){
+    public JSoupChefkoch(WebViewActivity ctx) {
         context = ctx;
     }
 
@@ -50,9 +50,9 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
     }
 
     @Override
-    protected String doInBackground(String ... urls) {
+    protected String doInBackground(String... urls) {
 
-        //Variablen zur
+        //Variablen zur Übergabe an Rezeptmodell
         String currentUrl = (String) urls[0];
         String title;
         String prepaire;
@@ -103,7 +103,6 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
             for (Element element4 : elementsPicture) {
                 for (int i = 0; i < elementsPicture.size(); i++) {
                     selectImageUrlString[i] = elementsPicture.get(i).absUrl("src");
-                    ;
                 }
                 imageUrl = selectImageUrlString[7];
                 foodPicture = getImageBytes(imageUrl);
@@ -119,12 +118,12 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
 
             try {
                 timeCook = timesString[1].substring(2);
-            }catch (Exception e){
+            } catch (Exception e) {
                 timeCook = "";
             }
             try {
                 timeTotal = timesString[2].substring(2);
-            }catch (Exception e){
+            } catch (Exception e) {
                 timeTotal = "";
             }
 
@@ -148,6 +147,12 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
         return null;
     }
 
+
+
+
+
+
+
     //Methodenteil
 
 
@@ -167,49 +172,47 @@ public class JSoupChefkoch extends AsyncTask <String, Integer, String > {
     }
 
 
+    // Stringseperator
+    public static String strSeparator = "__,__";
 
-
-// Stringseperator
-public static String strSeparator = "__,__";
-
-//von Array in String
-public static String convertArrayToString(String[] array){
+    //von Array in String
+    public static String convertArrayToString(String[] array) {
         String str = "";
-        for (int i = 0;i <array.length; i++) {
-        str = str + array[i];
-        // kein Komma am Ende des letzten Elements
-        if(i < array.length-1){
-        str = str + strSeparator;
-        }
+        for (int i = 0; i < array.length; i++) {
+            str = str + array[i];
+            // kein Komma am Ende des letzten Elements
+            if (i < array.length - 1) {
+                str = str + strSeparator;
+            }
         }
         return str;
-        }
-//von String in Array
-public static String[] convertStringToArray(String str){
+    }
+
+    //von String in Array
+    public static String[] convertStringToArray(String str) {
         String[] arr = str.split(strSeparator);
         return arr;
-        }
+    }
 
-//Image in Byte-Array für SQLite
-private static byte[] getImageBytes(String imageUrl) throws IOException
-        {
+    //Image in Byte-Array für SQLite
+    private static byte[] getImageBytes(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-        try (InputStream stream = url.openStream())
-        {
-        byte[] buffer = new byte[4096];
+        try (InputStream stream = url.openStream()) {
+            byte[] buffer = new byte[4096];
 
-        while (true)
-        {
-        int bytesRead = stream.read(buffer);
-        if (bytesRead < 0) { break; }
-        output.write(buffer, 0, bytesRead);
-        }
+            while (true) {
+                int bytesRead = stream.read(buffer);
+                if (bytesRead < 0) {
+                    break;
+                }
+                output.write(buffer, 0, bytesRead);
+            }
         }
         return output.toByteArray();
-        }
+    }
 
 
 }

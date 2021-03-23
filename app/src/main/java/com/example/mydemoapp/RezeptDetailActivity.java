@@ -33,6 +33,7 @@ public class RezeptDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rezept_detail);
 
+        //Initialisieren
         foodImage = (ImageView) findViewById(R.id.iv_foodImage);
         title = (TextView) findViewById(R.id.tv_title);
         timeWork = (TextView) findViewById(R.id.tv_timeWork);
@@ -41,9 +42,11 @@ public class RezeptDetailActivity extends AppCompatActivity {
         preperation = (TextView) findViewById(R.id.tv_prepaire);
         recyclerView = (RecyclerView) findViewById(R.id.rv_recyclerView);
 
+        //Übergebener Click-Intent
         Intent intent = getIntent();
         position = intent.getExtras().getInt("Pos");
 
+        //Abruf Details aus SQLite
         dataBaseHelper = new DataBaseHelper(RezeptDetailActivity.this);
         infoList = dataBaseHelper.getRecipe();
 

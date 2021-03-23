@@ -15,10 +15,9 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity {
 
     // Variablen
-    public static String url ="https://www.chefkoch.de/";
+    public static String url = "https://www.chefkoch.de/";
 
     private Button mChefkoch, mRezepte;
-
 
 
     @Override

@@ -72,9 +72,9 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
 
-/*
- *  Methodenteil
- * */
+    /*
+     *  Methodenteil
+     * */
 
     // Initialisieren
     private void init() {

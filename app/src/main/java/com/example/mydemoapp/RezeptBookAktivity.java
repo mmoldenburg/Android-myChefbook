@@ -32,12 +32,10 @@ public class RezeptBookAktivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.lv_listViewRezept);
 
 
-
         dataBaseHelper = new DataBaseHelper(RezeptBookAktivity.this);
         rezeptList = dataBaseHelper.getRecipe();
         adapter = new RezeptListenAdapter(this, R.layout.rezeptliste_helper, rezeptList);
         listView.setAdapter(adapter);
-
 
 
 //Rezept löschen aus database

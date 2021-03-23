@@ -42,7 +42,7 @@ public class RezeptListenAdapter extends BaseAdapter {
         return position;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView imageView;
         TextView textView;
     }
@@ -53,15 +53,14 @@ public class RezeptListenAdapter extends BaseAdapter {
         View row = convertView;
         ViewHolder holder = new ViewHolder();
 
-        if (row == null){
+        if (row == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(layout, null);
 
             holder.textView = (TextView) row.findViewById(R.id.tv_rezeptTitel);
             holder.imageView = (ImageView) row.findViewById(R.id.iv_foodImg);
             row.setTag(holder);
-        }
-        else{
+        } else {
             holder = (ViewHolder) row.getTag();
         }
 
